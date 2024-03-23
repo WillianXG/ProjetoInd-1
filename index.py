@@ -1,8 +1,19 @@
-numCandidatos = int(input("Quantos Candidatos?: "))
+while True:
+        try:
+            num = int(input("Quantos candidatos? "))
+        except ValueError:
+            print("Por favor, insira apenas números inteiros.")
 Candidatos = []
     
 for i in range(numCandidatos):
-    nome = (input(f"Nome do Candidato {i +1}"))
+    
+    
+    while True:
+        nome = input("Digite o nome do candidato: ")
+        if nome.replace(' ', '').isalpha():
+            print('')
+        else:
+            print("Por favor, insira apenas letras e espaços.")
    
     while True:
         try:
