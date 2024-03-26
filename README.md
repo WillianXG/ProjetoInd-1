@@ -1,12 +1,12 @@
 # Sistema de Gerenciamento de Candidatos
 Este é um programa Python para gerenciar candidatos e avaliar suas notas em várias etapas de seleção.
 
-#Funcionalidades
+# Funcionalidades
 Adicionar candidatos com seus respectivos dados e notas em diferentes categorias.
 Visualizar todos os candidatos e suas notas.
 Filtrar candidatos com base em notas mínimas especificadas pelo usuário em várias categorias.
 Como usar
-#Instalação:
+# Instalação:
 
 Certifique-se de ter o Python instalado em seu sistema.
 Baixe ou clone este repositório em sua máquina local.
