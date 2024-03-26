@@ -1,4 +1,4 @@
-#Sistema de Gerenciamento de Candidatos
+# Sistema de Gerenciamento de Candidatos
 Este é um programa Python para gerenciar candidatos e avaliar suas notas em várias etapas de seleção.
 
 #Funcionalidades
