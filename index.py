@@ -1,3 +1,5 @@
+# Inicio do projeto
+#teste
 def obter_numero_candidatos():
     while True:
         try:
