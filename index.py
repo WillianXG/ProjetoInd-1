@@ -42,14 +42,6 @@ def exibir_resultados(candidatos):
         print(f"| {nome.ljust(15)}\t| {notas_formatadas.ljust(22)}")
     print("-------------------------------------------------------------------------")
 
-def main():
-    num_candidatos = obter_numero_candidatos()
-    Candidatos = {}
-    for i in range(num_candidatos):
-        dados_candidato = preencher_dados_candidato()
-        Candidatos.append(dados_candidato)
-    exibir_resultados(Candidatos)
-    
 def adicionar_candidatos(candidatos):
     num_adicionais = obter_numero_candidatos()
     for i in range(num_adicionais):
@@ -57,26 +49,6 @@ def adicionar_candidatos(candidatos):
         candidatos.append(dados_candidato)
     return candidatos
 
-def main():
-    Candidatos = []
-    num_candidatos = obter_numero_candidatos()
-    for i in range(num_candidatos):
-        dados_candidato = preencher_dados_candidato()
-        Candidatos.append(dados_candidato)
-    exibir_resultados(Candidatos)
-    
-    while True:
-        opcao = input("Deseja adicionar mais candidatos? (s/n): ").lower()
-        if opcao == 's':
-            Candidatos = adicionar_candidatos(Candidatos)
-            exibir_resultados(Candidatos)
-        elif opcao == 'n':
-            print("Encerrando o programa.")
-            break
-        else:
-            print("Opção inválida. Por favor, escolha 's' para adicionar mais candidatos ou 'n' para encerrar o programa.")
-            
-    
 def procura_candidatos(candidatos, nota_entrevista=None, nota_teste_teórico=None, nota_teste_prático=None, nota_soft_skills=None):
     candidatos_selecionados = []
     
@@ -101,32 +73,48 @@ def procura_candidatos(candidatos, nota_entrevista=None, nota_teste_teórico=Non
 
 def main():
     Candidatos = []
-    num_candidatos = obter_numero_candidatos()
-    for i in range(num_candidatos):
-        dados_candidato = preencher_dados_candidato()
-        Candidatos.append(dados_candidato)
-    exibir_resultados(Candidatos)
-    
     while True:
-        opcao = input("Deseja adicionar mais candidatos? (s/n): ").lower()
-        if opcao == 's':
-            Candidatos = adicionar_candidatos(Candidatos)
+        print("Escolha uma opção:")
+        print("1. Adicionar novos candidatos")
+        print("2. Procurar candidato por nota")
+        print("3. Sair")
+        opcao = input("Digite o número correspondente à sua escolha: ")
+        
+        if opcao == '1':
+            num_candidatos = obter_numero_candidatos()
+            for i in range(num_candidatos):
+                dados_candidato = preencher_dados_candidato()
+                Candidatos.append(dados_candidato)
             exibir_resultados(Candidatos)
-        elif opcao == 'n':
+            
+            while True:
+                opcao_adicionar = input("Deseja adicionar mais candidatos? (s/n): ").lower()
+                if opcao_adicionar == 's':
+                    Candidatos = adicionar_candidatos(Candidatos)
+                    exibir_resultados(Candidatos)
+                elif opcao_adicionar == 'n':
+                    break
+                else:
+                    print("Opção inválida. Por favor, escolha 's' para adicionar mais candidatos ou 'n' para encerrar a adição.")
+        
+        elif opcao == '2':
+            if not Candidatos:
+                print("Não há candidatos registrados. Por favor, adicione candidatos primeiro.")
+            else:
+                nota_entrevista = int(input("Digite a nota mínima desejada para a entrevista: "))
+                nota_teste_teórico = int(input("Digite a nota mínima desejada para o teste teórico: "))
+                nota_teste_prático = int(input("Digite a nota mínima desejada para o teste prático: "))
+                nota_soft_skills = int(input("Digite a nota mínima desejada para as soft skills: "))
+                
+                candidatos_filtrados = procura_candidatos(Candidatos, nota_entrevista, nota_teste_teórico, nota_teste_prático, nota_soft_skills)
+                exibir_resultados(candidatos_filtrados)
+        
+        elif opcao == '3':
             print("Encerrando o programa.")
             break
+        
         else:
-            print("Opção inválida. Por favor, escolha 's' para adicionar mais candidatos ou 'n' para encerrar o programa.")
-            
-    nota_entrevista = int(input("Digite a nota mínima desejada para a entrevista: "))
-    nota_teste_teórico = int(input("Digite a nota mínima desejada para o teste teórico: "))
-    nota_teste_prático = int(input("Digite a nota mínima desejada para o teste prático: "))
-    nota_soft_skills = int(input("Digite a nota mínima desejada para as soft skills: "))
-    
-    candidatos_filtrados = procura_candidatos(Candidatos, nota_entrevista, nota_teste_teórico, nota_teste_prático, nota_soft_skills)
-    
-    exibir_resultados(candidatos_filtrados)
+            print("Opção inválida. Por favor, escolha uma das opções listadas.")
 
 if __name__ == "__main__":
     main()
-
